@@ -1,0 +1,63 @@
+<form
+ novalidate
+ [formGroup]="loginForm"
+ (ngSubmit)="submit()" 
+ class="card-body"
+>
+  
+ <!-- Champ de l’adresse email -->
+<div class="form-group">
+    <label for="email">Email</label>
+    <input
+     id="email"
+     type="email"
+     formControlName="email"
+     class="form-control"
+     placeholder="Votre email"
+    />
+
+    <small *ngIf="email.errors && email.dirty" class="form-text text-muted">
+        <span [hidden]="!email.errors.required">
+         Email requis.
+        </span>
+        <span [hidden]="!email.errors.email">
+         Entrez une adresse email valide.
+        </span>
+       </small>
+
+   </div>
+  
+ <!-- Champ du mot de passe -->
+<div class="form-group">
+    <label for="password">Password</label>
+    <input
+     id="password"
+     type="password"
+     formControlName="password"
+     class="form-control"
+     placeholder="Votre mot de passe"
+    /> 
+
+    <small *ngIf="password.errors && password.dirty"
+  class="form-text text-muted"
+ >
+  <span [hidden]="!password.errors.required">
+   Mot de passe requis.
+  </span>
+ </small>
+
+    </div>
+ 
+ <!-- Bouton pour soumettre le formulaire -->
+<p class="text-center py-3">
+ <button
+  type="submit"
+  class="btn"
+  [disabled]="!loginForm.valid" 
+  [ngClass]=
+  "{'btn-success':loginForm.valid,'btn-default':!loginForm.valid}">
+   Inscription
+ </button>
+</p>
+
+</form>
